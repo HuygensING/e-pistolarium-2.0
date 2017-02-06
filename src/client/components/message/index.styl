@@ -1,0 +1,18 @@
+.app > .message,
+.login > .message
+	border-radius 6px
+	bottom 1%
+	left 1%
+	padding 1%
+	position fixed
+	z-index 999
+
+	&.error
+		background darken(red, 15%)
+		border 3px solid darken(red, 15%)
+		color #EEE
+
+	&.success
+		background darken(green, 15%)
+		border 3px solid darken(green, 15%)
+		color #EEE

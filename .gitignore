@@ -1,0 +1,5 @@
+.idea
+build
+node_modules
+e-pistolarium-2.0.iml
+npm-debug.log
