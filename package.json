@@ -10,7 +10,8 @@
     "server": "nodemon build/server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-client": "webpack -w",
-    "watch-server": "tsc -w -p src/server"
+    "watch-server": "tsc -w -p src/server",
+    "watch-stylus": "stylus --watch --out build/client/index.css src/client/stylus/index.styl"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "lodash.debounce": "^4.0.8",
     "nodemon": "^1.11.0",
     "proxy-middleware": "^0.15.0",
+    "stylus": "^0.54.5",
     "typescript": "^2.1.5",
     "webpack": "^2.2.1"
   },
