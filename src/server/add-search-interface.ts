@@ -22,10 +22,21 @@ const toLookup = (prev, curr) => {
 	return prev;
 };
 
+const toResult = (letter) => {
+	letter.data = {
+		date: letter.date,
+		language: letter.language,
+		recipientLoc: letter.recipientLoc,
+		senderLoc: letter.senderLoc,
+	};
+	letter.displayName = `From ${letter.sender} to ${letter.recipient}`;
+	return letter;
+};
+
 const fetchAndSendResult = async (url, res) => {
 	const result = await fetch(url);
 	const data = await result.json();
-	data.results = [];
+	data.results = data.letters.map(toResult);
 	data.sortableFields = [];
 	data.facets = [];
 	data.facets.push(addFacet(data, 'senders', 'personLabels'));
@@ -33,6 +44,12 @@ const fetchAndSendResult = async (url, res) => {
 	data.facets.push(addFacet(data, 'senderLocs', 'placeLabels'));
 	data.facets.push(addFacet(data, 'recipientLocs', 'placeLabels'));
 	data.facets.push(addFacet(data, 'corpora', 'corpusLabels'));
+	delete data.letters;
+	delete data.senders;
+	delete data.recipients;
+	delete data.senderLocs;
+	delete data.recipientLocs;
+	delete data.corpora;
 	res.json(data);
 	return data;
 };
@@ -41,21 +58,18 @@ export default (app, state) => {
 	app.post('/search-result-location', async (req, res) => {
 		const { facetValues, sortParameters, term } = req.body;
 		const initFacets = (!facetValues.length && !sortParameters.length && term === '');
-
-		const body = initFacets ?
-			`q=${encodeURIComponent('*:*')}` :
+		const query = initFacets ?
+			encodeURIComponent('*:*') :
 			constructQuery(req.body, state);
-
 		const result = await fetch(ckccBackendUrl, {
 			method: 'POST',
-			body,
+			body: `q=${query}`,
 		});
 		const data = await result.json();
 		const location = initFacets ?
 			`/api/init-facets?key=${data.key}` :
 			`/api/facets?key=${data.key}`;
 		res.set('Location', location);
-
 		res.end();
 	});
 

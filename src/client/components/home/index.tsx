@@ -8,6 +8,7 @@ export default (props) =>
 				baseURL: '/api/search-result-location',
 				searchPath: '',
 			}}
+			onSelect={(letter) => console.log(letter)}
 		/>
 	</div>;
 

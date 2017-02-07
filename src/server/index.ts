@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const state = new Map();
-state.set('count', 0);
 
 addSearchInterface(app, state);
 

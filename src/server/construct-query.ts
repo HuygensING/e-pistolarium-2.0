@@ -20,5 +20,5 @@ export default (body, state) => {
 		return `${prev}+${prop}:(${values}) `;
 	}, '');
 	const sort = 'date';
-	return `q=${query}&sort=${sort}`;
+	return `${encodeURIComponent(query.trim())}&sort=${sort}`;
 }
