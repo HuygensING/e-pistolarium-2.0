@@ -13,24 +13,28 @@ class Record extends React.Component<IRecordProps, null> {
 	}
 
 	public render() {
-		console.log(this.props.letter);
-		const { keywords, meta, simLetters, tei, text } = this.props.letter;
+		const { meta, simLetters, tei, text } = this.props.letter;
+		let { keywords } = this.props.letter;
+		keywords = (keywords != null && keywords.hasOwnProperty('words')) ?
+			keywords.words.join(', ') :
+			null;
 
 		return (
 			<div className="record">
 				<aside>
-					<Meta {...meta} />
-					<div className="keywords">
-						{keywords && keywords.words}
-					</div>
-					<div className="similar-letters">
-						{simLetters && simLetters.letters}
-					</div>
+					<Meta {...meta} keywords={keywords} />
 				</aside>
-				<div
-					className="text"
-				  dangerouslySetInnerHTML={{__html: tei}}
-				/>
+				<div className="text">
+					<div dangerouslySetInnerHTML={{__html: tei}} />
+					<ul className="similar-letters">
+						{
+							simLetters &&
+							simLetters.letters.map((l, i) =>
+								<li key={i}>sim</li>
+							)
+						}
+					</ul>
+				</div>
 			</div>
 		)
 	}
