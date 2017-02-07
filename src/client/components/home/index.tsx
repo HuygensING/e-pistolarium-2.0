@@ -1,5 +1,6 @@
 import * as React from 'react';
 import HireFacetedSearch from 'hire-faceted-search';
+import history from '../../routes/history';
 
 export default (props) =>
 	<div className="home">
@@ -8,7 +9,7 @@ export default (props) =>
 				baseURL: '/api/search-result-location',
 				searchPath: '',
 			}}
-			onSelect={(letter) => console.log(letter)}
+			onSelect={(letter) => history.push(`/letter/${letter.pid.replace('/', '-')}`)}
 		/>
 	</div>;
 

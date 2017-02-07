@@ -8,8 +8,8 @@ var url = require('url');
 
 var baseDir = './';
 var watchFiles = [
-	baseDir + 'build/js/*.js',
-	baseDir + 'build/css/*.css',
+	baseDir + 'build/**/*.js',
+	baseDir + 'build/**/*.css',
 	'./index.html'
 ];
 

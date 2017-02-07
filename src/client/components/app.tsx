@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { unsetCurrentMessage } from '../actions/message';
 import Message from './message/index';
+import { fetchLetter } from "../actions/letter";
 
 const App = (props) =>
 	<div className="app">
@@ -17,9 +18,11 @@ const App = (props) =>
 
 export default connect(
 	(state) => ({
+		letter: state.letter.current,
 		message: state.message.currentMessage,
 	}),
 	{
+		fetchLetter,
 		unsetCurrentMessage,
 	},
 )(App);

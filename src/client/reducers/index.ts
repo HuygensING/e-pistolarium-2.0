@@ -1,5 +1,5 @@
-import image from './image';
+import letter from './letter';
 import user from './user';
 import message from './message';
 
-export default { image, message, user };
+export default { letter, message, user };

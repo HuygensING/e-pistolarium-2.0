@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { IndexRoute, Route, Router } from 'react-router';
 import App from '../components/app';
-import Home from '../components/home/index';
-import Login from '../components/login/index';
+import Home from '../components/home';
+import Login from '../components/login';
+import Record from '../components/record';
 import store from '../store';
 import history from './history';
 
@@ -15,6 +16,10 @@ export default (
 				path="/"
 			>
 				<IndexRoute component={Home} />
+				<Route
+					component={Record}
+				  path="letter/:id"
+				/>
 			</Route>
 			<Route
 				component={Login}
