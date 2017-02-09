@@ -26,3 +26,4 @@ $ npm run server-client
 - Save annotation
 - Refactor handling of annotations to start/end anchors
 - Create annotation on same height as selected text
+- Dockerize
