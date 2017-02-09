@@ -1,13 +1,16 @@
 import * as React from 'react';
 import * as cx from 'classnames';
+import { Link } from 'react-router';
 import Meta from './meta';
 import NewAnnotation from './new-annotation';
 
 interface IRecordProps {
 	createAnnotation: () => void;
-	fetchLetter: (id: string) => void;
+	fetchLetter: (id: string, subId: string) => void;
 	letter: any;
 	newAnnotationRange: Range;
+	newAnnotationText: string;
+	removeNewAnnotation: () => void;
 	params: any;
 }
 
@@ -25,8 +28,14 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 	};
 
 	public componentDidMount() {
-		this.props.fetchLetter(this.props.params.id);
+		const { id, subId } = this.props.params;
+		this.props.fetchLetter(id, subId);
 		document.addEventListener('mouseup', this.props.createAnnotation);
+	}
+
+	public componentWillReceiveProps(nextProps) {
+		const { id, subId } = nextProps.params;
+		this.props.fetchLetter(id, subId);
 	}
 
 	public componentWillUnmount() {
@@ -59,7 +68,9 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 						{
 							simLetters &&
 							simLetters.letters.map((l, i) =>
-								<li key={i}>sim</li>
+								<li key={i}>
+									<Link to={`/letters/${l.id}`}>{l.title}</Link>
+								</li>
 							)
 						}
 					</ul>

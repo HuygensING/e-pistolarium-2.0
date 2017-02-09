@@ -15,7 +15,7 @@ class TreeWalkerContainer {
 		range.setStartAfter(this.startNode);
 		range.setEndBefore(this.endNode);
 
-		const filter = (node) => {
+		const filter = (node: Node) => {
 			const r = document.createRange();
 			r.selectNode(node);
 

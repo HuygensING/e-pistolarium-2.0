@@ -1,4 +1,4 @@
-const url = (id) => `http://demo7.huygens.knaw.nl/glp-ckcctest/letters/${id.replace('-', '/')}/tei`;
+const url = (id) => `http://demo7.huygens.knaw.nl/glp-ckcctest/letters/${id}/tei`;
 
 export default (app, state) => {
 	app.get('/tei', async (req, res) => {

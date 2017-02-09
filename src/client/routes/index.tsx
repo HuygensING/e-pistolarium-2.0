@@ -18,7 +18,7 @@ export default (
 				<IndexRoute component={Home} />
 				<Route
 					component={Record}
-				  path="letter/:id"
+				  path="letters/:id/:subId"
 				/>
 			</Route>
 			<Route
@@ -28,9 +28,3 @@ export default (
 		</Router>
 	</Provider>
 );
-// onEnter={(nextState, replace, cb) => {
-// 	const state = store.getState();
-// 	console.log(state.user.token);
-// 	if (state.user.token == null) replace('/login');
-// 	cb();
-// }}

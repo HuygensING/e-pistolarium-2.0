@@ -13,7 +13,7 @@ class NewAnnotation extends React.Component<INewAnnotationProps, null> {
 				<h4>Create annotation</h4>
 				<div className="body">
 					<ul>
-						<Field className="selected-text" label="Selected text">
+						<Field label="Selected text">
 							<span className="left-double-quote">“</span>
 							<span className="text">{this.props.newAnnotationText}</span>
 							<span className="right-double-quote">”</span>

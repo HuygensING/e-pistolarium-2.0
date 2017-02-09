@@ -9,7 +9,7 @@ export default (props) =>
 				baseURL: '/api/search-result-location',
 				searchPath: '',
 			}}
-			onSelect={(letter) => history.push(`/letter/${letter.pid.replace('/', '-')}`)}
+			onSelect={(letter) => history.push(`/letters/${letter.pid}`)}
 		/>
 	</div>;
 

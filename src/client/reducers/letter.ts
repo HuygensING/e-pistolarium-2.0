@@ -22,6 +22,13 @@ export default (state = initialState, action) => {
 			break;
 		}
 
+		case 'SET_LETTER': {
+			nextState = { ...nextState, ...{
+				current: action.letter,
+			}};
+			break;
+		}
+
 		default:
 	}
 
