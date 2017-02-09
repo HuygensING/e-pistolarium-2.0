@@ -22,9 +22,8 @@ $ npm run server-client
 ## ToDo
 
 - Style Home (faceted search and results)
-- Style similar letters
 - Save annotation
 - Refactor handling of annotations to start/end anchors
-- Create annotation on same height as selected text
+- Create annotation at same height as selected text
 - Dockerize
 - Navigation bar (return to search)

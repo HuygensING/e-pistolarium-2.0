@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as cx from 'classnames';
-import { Link } from 'react-router';
 import Meta from './meta';
 import NewAnnotation from './new-annotation';
+import SimilarLetters from './similar-letters';
 
 interface IRecordProps {
 	createAnnotation: () => void;
@@ -64,16 +64,7 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 						className="text"
 						dangerouslySetInnerHTML={{__html: tei}}
 					/>
-					<ul className="similar-letters">
-						{
-							simLetters &&
-							simLetters.letters.map((l, i) =>
-								<li key={i}>
-									<Link to={`/letters/${l.id}`}>{l.title}</Link>
-								</li>
-							)
-						}
-					</ul>
+					<SimilarLetters similarLetters={simLetters} />
 				</div>
 				<aside className="right">
 					<NewAnnotation {...this.props} />
