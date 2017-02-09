@@ -6,6 +6,7 @@ export default ({
 	date,
 	extra,
 	extraFields,
+	id,
 	keywords,
 	language,
 	pid,
@@ -16,6 +17,7 @@ export default ({
 }) =>
 	<div className="meta">
 		<ul>
+			<Field label="ID">{id}</Field>
 			<Field label="Date">{date}</Field>
 			<Field label="Sender">{sender}</Field>
 			<Field label="Recipient">{recipient}</Field>
