@@ -23,8 +23,12 @@ class Record extends React.Component<IRecordProps, null> {
 		document.addEventListener('mouseup', this.props.createAnnotation);
 	}
 
+	public componentWillUnmount() {
+		document.removeEventListener('mouseup', this.props.createAnnotation);
+	}
+
 	public render() {
-		const { meta, simLetters, tei, text } = this.props.letter;
+		const { meta, pid, simLetters, tei, text } = this.props.letter;
 		let { keywords } = this.props.letter;
 		keywords = (keywords != null && keywords.hasOwnProperty('words')) ?
 			keywords.words.join(', ') :
@@ -38,7 +42,7 @@ class Record extends React.Component<IRecordProps, null> {
 				places: this.state.places,
 			})}>
 				<aside>
-					<Meta {...meta} keywords={keywords} />
+					<Meta {...meta} keywords={keywords} id={pid} />
 				</aside>
 				<div className="letter">
 					<div
