@@ -34,7 +34,6 @@
     "@types/react-dom": "^0.14.22",
     "@types/whatwg-fetch": "0.0.33",
     "classnames": "^2.2.5",
-    "cors": "^2.8.1",
     "hire-faceted-search": "^7.0.1",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.4.2",
