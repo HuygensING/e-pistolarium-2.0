@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build-server && npm run build-css && npm run build-client",
+    "build": "mkdir -p build/client && npm run build-css && npm run build-server && npm run build-client",
     "build-client": "webpack",
     "build-css": "stylus --out build/client/index.css src/client/stylus/index.styl",
     "build-server": "tsc -p src/server",
