@@ -11,7 +11,13 @@ interface IRecordProps {
 	params: any;
 }
 
-class Record extends React.Component<IRecordProps, null> {
+interface IRecordState {
+	dates: boolean;
+	persons: boolean;
+	places: boolean;
+}
+
+class Record extends React.Component<IRecordProps, IRecordState> {
 	public state = {
 		dates: true,
 		persons: true,
@@ -41,7 +47,7 @@ class Record extends React.Component<IRecordProps, null> {
 				persons: this.state.persons,
 				places: this.state.places,
 			})}>
-				<aside>
+				<aside className="left">
 					<Meta {...meta} keywords={keywords} id={pid} />
 				</aside>
 				<div className="letter">
@@ -58,7 +64,9 @@ class Record extends React.Component<IRecordProps, null> {
 						}
 					</ul>
 				</div>
-				<NewAnnotation {...this.props} />
+				<aside className="right">
+					<NewAnnotation {...this.props} />
+				</aside>
 			</div>
 		)
 	}

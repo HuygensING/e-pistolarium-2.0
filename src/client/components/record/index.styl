@@ -1,5 +1,5 @@
 .record
-	asideWidth = calc(49% - 320px)
+	asideWidth = calc(50% - 320px)
 	height 100%
 	overflow-x hidden
 	white-space nowrap
@@ -9,21 +9,25 @@
 		inline-block()
 		white-space normal
 
-	aside
-		margin-left 1%
+	aside.left
+		min-width 320px
+		padding-left 1%
 		position relative
 		transition all 300ms
 		width asideWidth
 
 		.meta
-			max-width 320px
+			box-sizing border-box
 			position absolute
 			right 0
+			width 320px
 
 	.letter
 		font-size 1.4em
 		line-height 1.5em
-		width 640px
+		padding 0 1em
+		max-width 640px
+		width calc(100% - 320px)
 
 		.text
 			p
@@ -35,17 +39,21 @@
 				border-bottom 1px solid rgba(#CCC, 1)
 				color black
 
-	.new-annotation
+	aside.right
 		margin-left asideWidth
-		max-width 480px
+		min-width 360px
+		padding-right 1%
+		position relative
 		transition all 300ms
 		width asideWidth
 
-	&.create-annotation
-		//aside
-		//	margin-left calc(-1 * (50% - 320px))
-
 		.new-annotation
+			box-sizing border-box
+			position absolute
+			width 360px
+
+	&.create-annotation
+		aside.right
 			margin-left 0
 
 	&.persons, &.places, &.dates
@@ -81,3 +89,12 @@
 			&:after
 				background-image url('/static/images/android-calendar.svg')
 
+//@media (max-width 1200px)
+	//.record
+
+	//.record.create-annotation
+	//	aside
+	//		margin-left calc(-1 * (49% - 320px))
+	//
+	//	.new-annotation
+	//		width calc(100% - 640px)

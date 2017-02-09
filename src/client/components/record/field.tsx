@@ -7,7 +7,7 @@ const sluggify = (str) =>
 		.replace(/\(|\)/g, '')
 		.replace(/\s/g, '-');
 
-export default ({ children, label }) =>
+export default ({ children, label }: { children?: Node[], label: string}) =>
 	(children != null && children.length) ?
 		<li className={`field ${sluggify(label)}`}>
 			<div className="label">{label}</div>
