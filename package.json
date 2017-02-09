@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build-client && npm run build-css && npm run build-server",
     "build-client": "webpack",
+    "build-css": "stylus --out build/client/index.css src/client/stylus/index.styl",
     "build-server": "tsc -p src/server",
     "server-client": "node server.js",
     "server": "nodemon build/server",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "watch-client": "webpack -w",
     "watch-server": "tsc -w -p src/server",
     "watch-stylus": "stylus --watch --out build/client/index.css src/client/stylus/index.styl"
