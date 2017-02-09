@@ -1,12 +1,5 @@
 import * as React from 'react';
-
-const Field = ({ label, value }) =>
-	(value != null && value !== '') ?
-		<li>
-			<div className="label">{label}</div>
-			<div className="value">{value}</div>
-		</li> :
-		null;
+import Field from './field';
 
 export default ({
 	appendixOf,
@@ -23,11 +16,11 @@ export default ({
 }) =>
 	<div className="meta">
 		<ul>
-			<Field label="Date" value={date}/>
-			<Field label="Sender" value={sender}/>
-			<Field label="Recipient" value={recipient}/>
-			<Field label="Language" value={language}/>
-			<Field label="Appendix of" value={appendixOf}/>
-			<Field label="Keywords" value={keywords}/>
+			<Field label="Date">{date}</Field>
+			<Field label="Sender">{sender}</Field>
+			<Field label="Recipient">{recipient}</Field>
+			<Field label="Language">{language}</Field>
+			<Field label="Appendix of">{appendixOf}</Field>
+			<Field label="Keywords">{keywords}</Field>
 		</ul>
 	</div>;

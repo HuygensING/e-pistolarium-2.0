@@ -1,0 +1,58 @@
+.new-annotation
+	padding-left 2em
+	padding-right 2px // To show the .body (well()) shadow
+
+	h4
+		color #999
+		font-size 0.8em
+		letter-spacing 1px
+		margin-bottom 0.4em
+		text-transform uppercase
+
+	.body
+		border-radius 3px
+		well()
+
+		ul
+			list-style none
+
+			li.field.selected-text
+				.value
+					display flex
+					span.left-double-quote, span.right-double-quote
+						font-size 2em
+						flex 1
+
+					span.right-double-quote
+						align-self flex-end
+
+					span.left-double-quote, span.right-double-quote, span.text
+						inline-block()
+
+					span.text
+						flex 8
+
+	footer
+		margin-top 3em
+
+		.cancel, .save
+			cursor pointer
+			line-height 2em
+			inline-block()
+			text-align center
+			width 50%
+
+		.cancel
+			color gray
+
+			&:hover
+				color black
+
+		.save
+			border-radius 3px
+			border 1px solid #CCC
+
+			&:hover
+				background-color #FAFAFA
+				border-color #AAA
+				color black
