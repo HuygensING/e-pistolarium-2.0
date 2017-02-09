@@ -27,3 +27,4 @@ $ npm run server-client
 - Refactor handling of annotations to start/end anchors
 - Create annotation on same height as selected text
 - Dockerize
+- Navigation bar (return to search)
