@@ -3,6 +3,7 @@ import * as cx from 'classnames';
 import Meta from './meta';
 import NewAnnotation from './new-annotation';
 import SimilarLetters from './similar-letters';
+import Menu from './menu';
 
 interface IRecordProps {
 	createAnnotation: () => void;
@@ -22,9 +23,9 @@ interface IRecordState {
 
 class Record extends React.Component<IRecordProps, IRecordState> {
 	public state = {
-		dates: true,
-		persons: true,
-		places: true,
+		dates: false,
+		persons: false,
+		places: false,
 	};
 
 	public componentDidMount() {
@@ -42,6 +43,12 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 		document.removeEventListener('mouseup', this.props.createAnnotation);
 	}
 
+	private handleToggleAnnotationType = (type) => {
+		this.setState({
+			[type]: !this.state[type],
+		});
+	};
+
 	public render() {
 		const { meta, pid, simLetters, tei, text } = this.props.letter;
 		let { keywords } = this.props.letter;
@@ -56,6 +63,7 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 				persons: this.state.persons,
 				places: this.state.places,
 			})}>
+				<Menu toggleAnnotationType={this.handleToggleAnnotationType} />
 				<aside className="left">
 					<Meta {...meta} keywords={keywords} id={pid} />
 				</aside>

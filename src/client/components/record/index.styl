@@ -1,18 +1,30 @@
+activeAnnotationType()
+	cursor pointer
+	padding 0 2px
+
+	&:after
+		background-size 16px 16px
+		content ''
+		display inline-block
+		height 16px
+		margin-left 4px
+		width 16px
+
 .record
 	height 100%
 	overflow-x hidden
 	white-space nowrap
 	width 100%
 
-	aside, .letter
+	aside, & > .letter
 		inline-block()
 		white-space normal
 
-	.letter
+	& > .letter
 		font-size 1.4em
-		height 100%
+		height calc(100% - 40px)
 		line-height 1.8em
-		padding 0 1em
+		padding 20px 1em
 		max-width 640px
 		overflow-y auto
 		width calc(100% - 360px)
@@ -27,35 +39,25 @@
 				border-bottom 1px solid rgba(#CCC, 1)
 				color black
 
-	&.persons, &.places, &.dates
-		persName, placeName, date
-			cursor pointer
-			padding 0 2px
-
-			&:after
-				background-size 16px 16px
-				content ''
-				display inline-block
-				height 16px
-				margin-left 4px
-				width 16px
-
 	&.persons
 		persName
-			border-bottom 1px solid #9C27B0
+			activeAnnotationType()
+			border-bottom 1px solid ep_purple
 
 			&:after
 				background-image url('/static/images/android-person.svg')
 	&.places
 		placeName
-			border-bottom 1px solid #E91E63
+			activeAnnotationType()
+			border-bottom 1px solid ep_pink
 
 			&:after
 				background-image url('/static/images/android-globe.svg')
 
 	&.dates
 		date
-			border-bottom 1px solid #2196F3
+			activeAnnotationType()
+			border-bottom 1px solid ep_green
 
 			&:after
 				background-image url('/static/images/android-calendar.svg')

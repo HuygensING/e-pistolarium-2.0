@@ -1,0 +1,66 @@
+.button
+	border 1px solid lighten(ep_blue, 50%)
+	border-radius 2px
+	color ep_blue
+	cursor pointer
+	height 26px
+	inline-block()
+	line-height 26px
+	padding 0 12px
+
+	&:hover
+		background ep_blue
+		border 1px solid ep_blue
+		color white
+
+.record > .menu
+	.button
+		margin-top 7px
+
+	& > .letter
+		.toggles
+			inline-block()
+			text-align center
+			width calc(100% - 110px - 70px - 1em)
+
+			.button
+				border 1px solid #BBB
+				margin-right 10px
+				width 40px
+
+				&:hover, &.active
+					background none
+
+					&.person
+						border-color ep_purple
+
+					&.place
+						border-color ep_pink
+
+					&.date
+						border-color ep_green
+
+				&.active
+					&.person svg
+						fill ep_purple
+
+					&.place svg
+						fill ep_pink
+
+					&.date svg
+						fill ep_green
+
+				svg
+					fill #999
+
+		.button.previous
+			width 110px
+
+		.button.next
+			text-align right
+			width 70px
+
+		img, svg
+			height 16px
+			margin-top 5px
+			width 16px

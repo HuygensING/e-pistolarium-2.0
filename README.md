@@ -24,6 +24,6 @@ $ npm run server-client
 - Style Home (faceted search and results)
 - Save annotation
 - Refactor handling of annotations to start/end anchors
-- Create annotation at same height as selected text
 - Dockerize
-- Navigation bar (return to search)
+- Cache search results
+- Record prev/next
