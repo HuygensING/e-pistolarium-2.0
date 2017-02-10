@@ -27,3 +27,4 @@ $ npm run server-client
 - Dockerize
 - Cache search results
 - Record prev/next
+- Add @media rule for record menu under 1120px
