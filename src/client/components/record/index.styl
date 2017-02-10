@@ -1,33 +1,21 @@
 .record
-	asideWidth = calc(50% - 320px)
 	height 100%
 	overflow-x hidden
 	white-space nowrap
 	width 100%
 
-	aside, .letter, .new-annotation
+	aside, .letter
 		inline-block()
 		white-space normal
 
-	aside.left
-		min-width 320px
-		padding-left 1%
-		position relative
-		transition all 300ms
-		width asideWidth
-
-		.meta
-			box-sizing border-box
-			position absolute
-			right 0
-			width 320px
-
 	.letter
 		font-size 1.4em
+		height 100%
 		line-height 1.8em
 		padding 0 1em
 		max-width 640px
-		width calc(100% - 320px)
+		overflow-y auto
+		width calc(100% - 360px)
 
 		.text
 			p
@@ -38,23 +26,6 @@
 				border-top 1px solid rgba(#CCC, 1)
 				border-bottom 1px solid rgba(#CCC, 1)
 				color black
-
-	aside.right
-		margin-left asideWidth
-		min-width 360px
-		padding-right 1%
-		position relative
-		transition all 300ms
-		width asideWidth
-
-		.new-annotation
-			box-sizing border-box
-			position absolute
-			width 360px
-
-	&.create-annotation
-		aside.right
-			margin-left 0
 
 	&.persons, &.places, &.dates
 		persName, placeName, date
