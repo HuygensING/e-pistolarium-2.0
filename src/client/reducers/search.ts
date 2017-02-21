@@ -10,10 +10,12 @@ const findPrevAndNextLetter = (letter, result) => {
 	let nextLetter = null;
 	let prevLetter = null;
 
-	const letterIndex = result.findIndex((r) => r.pid === letter.pid);
-	if (letterIndex > -1 && letterIndex < result.length) {
-		if (letterIndex > 0) prevLetter = result[letterIndex - 1];
-		if (letterIndex < (result.length - 1)) nextLetter = result[letterIndex + 1];
+	if (result != null) {
+		const letterIndex = result.findIndex((r) => r.pid === letter.pid);
+		if (letterIndex > -1 && letterIndex < result.length) {
+			if (letterIndex > 0) prevLetter = result[letterIndex - 1];
+			if (letterIndex < (result.length - 1)) nextLetter = result[letterIndex + 1];
+		}
 	}
 
 	return { nextLetter, prevLetter };

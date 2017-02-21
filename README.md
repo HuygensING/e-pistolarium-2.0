@@ -25,6 +25,4 @@ $ npm run server-client
 - Save annotation
 - Refactor handling of annotations to start/end anchors
 - Dockerize
-- Cache search results
-- Record prev/next
-- Add @media rule for record menu under 1120px
+- Cache search results (impossible with current backend)
