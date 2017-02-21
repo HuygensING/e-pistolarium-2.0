@@ -1,0 +1,1 @@
+export const backendUrl = 'http://tc13.huygens.knaw.nl/glp-ckcc/'

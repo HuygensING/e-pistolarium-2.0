@@ -1,4 +1,5 @@
-const url = (id) => `http://demo7.huygens.knaw.nl/glp-ckcctest/letters/${id}/tei`;
+import {backendUrl} from "./constants";
+const url = (id) => `${backendUrl}letters/${id}/tei`;
 
 export default (app, state) => {
 	app.get('/tei', async (req, res) => {

@@ -1,7 +1,8 @@
 import 'whatwg-fetch';
+import {backendUrl} from "../../server/constants";
 
 const metadataUrl = (id) =>
-	`http://tc13.huygens.knaw.nl/glp-ckcc/letters/${id}/text`;
+	`${backendUrl}letters/${id}/text`;
 
 const teiUrl = (id) => `/api/tei?id=${id}`;
 	// `http://demo7.huygens.knaw.nl/glp-ckcctest/letters/${id.replace('-', '/')}/tei`;
