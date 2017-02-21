@@ -1,5 +1,7 @@
 import 'whatwg-fetch';
 import {backendUrl} from "../../server/constants";
+import history from '../routes/history';
+import {addMessage} from "./message";
 
 const metadataUrl = (id) =>
 	`${backendUrl}letters/${id}/text`;
@@ -49,13 +51,13 @@ export const fetchLetter = (id: string, subId: string) => async (dispatch, getSt
 		});
 
 		message = {
-			value: 'Letter received',
+			value: `Letter "${metadata.pid}" received`,
 			type: 'success',
 		};
 	}
 
-	dispatch({
-		message,
-		type: 'RECEIVE_MESSAGE',
-	});
+	addMessage(message, dispatch);
 };
+
+export const goToLetter = (letter) => (dispatch) =>
+	history.push(`/letters/${letter.pid}`);

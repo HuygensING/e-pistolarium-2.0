@@ -8,7 +8,15 @@ export default (props) =>
 			<Button onClick={() => history.push('/')}>↞ Search</Button>
 		</div>
 		<div className="letter">
-			<Button className="previous">← previous</Button>
+			{
+				props.prevLetter &&
+				<Button
+					className="previous"
+				  onClick={() => props.goToLetter(props.prevLetter)}
+				>
+					← previous
+				</Button>
+			}
 			<div className="toggles">
 				<Button
 					className="person"
@@ -40,6 +48,14 @@ export default (props) =>
 					</svg>
 				</Button>
 			</div>
-			<Button className="next">next →</Button>
+			{
+				props.nextLetter &&
+				<Button
+					className="next"
+					onClick={() => props.goToLetter(props.nextLetter)}
+				>
+					next →
+				</Button>
+			}
 		</div>
 	</div>;

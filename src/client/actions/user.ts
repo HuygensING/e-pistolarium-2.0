@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import history from '../routes/history';
+import {addMessage} from "./message";
 
 export const userLogin = (formData) => async (dispatch/*, getState */) => {
 	const url = '/api/login';
@@ -21,8 +22,5 @@ export const userLogin = (formData) => async (dispatch/*, getState */) => {
 		history.replace('/');
 	}
 
-	dispatch({
-		message,
-		type: 'RECEIVE_MESSAGE',
-	});
+	addMessage(message, dispatch);
 };

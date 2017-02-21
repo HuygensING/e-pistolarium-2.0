@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IMessage } from '../../interfaces';
-import { unsetCurrentMessage } from '../../actions/message';
+import { removeOldestMessage } from '../../actions/message';
 import { userLogin } from '../../actions/user';
-import Message from '../message/index';
+import Message from '../messages/index';
 
 interface IEventsProps {
-	message: IMessage;
+	activeMessages: IMessage[];
 	userLogin: (form: any) => void;
 	unsetCurrentMessage: () => void;
 }
@@ -16,8 +16,8 @@ class Login extends React.Component<IEventsProps, {}> {
 		return (
 			<div className="login">
 				<Message
-					message={this.props.message}
-					unsetCurrentMessage={this.props.unsetCurrentMessage}
+					messagess={this.props.activeMessages}
+					removeOldestMessage={this.props.removeOldestMessage}
 				/>
 				<form>
 					<ul>
@@ -62,6 +62,6 @@ export default connect(
 	}),
 	{
 		userLogin,
-		unsetCurrentMessage,
+		removeOldestMessage,
 	},
 )(Login);

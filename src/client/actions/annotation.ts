@@ -1,3 +1,5 @@
+import {addMessage} from "./message";
+
 class TreeWalkerContainer {
 	public offset: number = 1;
 	public treeWalker: TreeWalker = null;
@@ -79,13 +81,11 @@ export const createAnnotation = () => (dispatch, getState) => {
 	// offset of the selection.
 	const commonAncestor = findCommonAncestor(range);
 	if (commonAncestor == null) {
-		return dispatch({
-			message: {
-				type: 'error',
-				value: 'Common ancestor is missing an "xml:id"!',
-			},
-			type: 'RECEIVE_MESSAGE',
-		});
+		const message = {
+			type: 'error',
+			value: 'Common ancestor is missing an "xml:id"!',
+		};
+		addMessage(message, dispatch);
 	}
 
 	// Insert an anchor at the start and at the end of the selection.

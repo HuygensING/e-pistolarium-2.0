@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { unsetCurrentMessage } from '../actions/message';
-import Message from './message/index';
-import { fetchLetter } from "../actions/letter";
+import { removeOldestMessage } from '../actions/message';
+import Messages from './messages';
+import {fetchLetter, goToLetter} from "../actions/letter";
+import { receiveSearchResult } from "../actions/search";
 import {createAnnotation, removeNewAnnotation} from "../actions/annotation";
 
 const App = (props) =>
 	<div className="app">
-		<Message
-			message={props.message}
-			unsetCurrentMessage={props.unsetCurrentMessage}
+		<Messages
+			messages={props.activeMessages}
+			removeOldestMessage={props.removeOldestMessage}
 		/>
 		<header><h1>Circulation of Knowledge and Learned Practices in the 17th-century Dutch Republic</h1></header>
 		<div className="body">
@@ -20,14 +21,18 @@ const App = (props) =>
 export default connect(
 	(state) => ({
 		letter: state.letter.current,
-		message: state.message.currentMessage,
+		activeMessages: state.message.activeMessages,
+		nextLetter: state.search.nextLetter,
 		newAnnotationRange: state.annotation.range,
 		newAnnotationText: state.annotation.text,
+		prevLetter: state.search.prevLetter,
 	}),
 	{
 		createAnnotation,
+		goToLetter,
 		fetchLetter,
+		receiveSearchResult,
 		removeNewAnnotation,
-		unsetCurrentMessage,
+		removeOldestMessage,
 	},
 )(App);

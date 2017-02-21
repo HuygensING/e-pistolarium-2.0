@@ -10,7 +10,7 @@ export default class Queue {
 
 	public add(element: any): Queue {
 		if (this.elements.length === this.maxSize) {
-			this.elements = this.elements.slice(1);
+			this.removeOldest();
 		}
 		this.elements = this.elements.concat(element);
 
@@ -21,15 +21,20 @@ export default class Queue {
 		return this.elements[0];
 	}
 
-	public get(): any[] {
-		return this.elements;
-	}
-
 	public last(): any {
 		return this.elements[this.elements.length - 1];
 	}
 
+	public removeOldest() {
+		this.elements = this.elements.slice(1);
+		return this;
+	}
+
 	public size(): number {
 		return this.elements.length;
+	}
+
+	public values(): any[] {
+		return this.elements;
 	}
 }

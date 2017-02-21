@@ -9,6 +9,7 @@ export default (props) =>
 				baseURL: '/api/search-result-location',
 				searchPath: '',
 			}}
+			onChange={props.receiveSearchResult}
 			onSelect={(letter) => history.push(`/letters/${letter.pid}`)}
 		/>
 	</div>;

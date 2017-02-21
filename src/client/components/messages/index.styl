@@ -1,0 +1,23 @@
+.app > ul.messages
+.login ul.messages
+	bottom 1%
+	font-size 1.5em
+	left 1%
+	max-width 33.33%
+	position fixed
+	width 33.33%
+
+	li.message
+		border-radius 6px
+		margin-bottom 4px
+		padding 2%
+
+		&.error
+			background darken(red, 15%)
+			border 3px solid darken(red, 15%)
+			color #EEE
+
+		&.success
+			background darken(green, 15%)
+			border 3px solid darken(green, 15%)
+			color #EEE

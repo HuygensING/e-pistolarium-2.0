@@ -8,11 +8,14 @@ import Menu from './menu';
 interface IRecordProps {
 	createAnnotation: () => void;
 	fetchLetter: (id: string, subId: string) => void;
+	goToLetter: (letter) => void;
 	letter: any;
 	newAnnotationRange: Range;
 	newAnnotationText: string;
+	nextLetter: any;
 	removeNewAnnotation: () => void;
 	params: any;
+	prevLetter: any;
 }
 
 interface IRecordState {
@@ -63,17 +66,27 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 				persons: this.state.persons,
 				places: this.state.places,
 			})}>
-				<Menu toggleAnnotationType={this.handleToggleAnnotationType} />
+				<Menu
+					goToLetter={this.props.goToLetter}
+					nextLetter={this.props.nextLetter}
+					prevLetter={this.props.prevLetter}
+					toggleAnnotationType={this.handleToggleAnnotationType}
+				/>
 				<aside className="left">
 					<Meta {...meta} keywords={keywords} id={pid} />
 				</aside>
-				<div className="letter">
+				<article
+					className="letter"
+				  ref={(el) => {
+				  	this.articleEl = el;
+				  }}
+				>
 					<div
 						className="text"
 						dangerouslySetInnerHTML={{__html: tei}}
 					/>
 					<SimilarLetters similarLetters={simLetters} />
-				</div>
+				</article>
 				<aside className="right">
 					<NewAnnotation {...this.props} />
 				</aside>

@@ -2,36 +2,35 @@ import Queue from '../utils/queue';
 import { IMessage } from '../interfaces';
 
 interface IState {
-	currentMessage: IMessage;
+	activeMessages: IMessage[];
 	messages: IMessage[];
 }
 
-const emptyMessage = {
-	type: null,
-	value: null,
-};
 const messages = new Queue();
+const activeMessages = new Queue();
 const initialState: IState = {
-	currentMessage: emptyMessage,
-	messages: messages.get(),
+	activeMessages: activeMessages.values(),
+	messages: messages.values(),
 };
 
 export default (state = initialState, action) => {
 	let nextState = state;
 
 	switch (action.type) {
-		case 'RECEIVE_MESSAGE': {
+		case 'ADD_MESSAGE': {
 			messages.add(action.message);
+			activeMessages.add(action.message);
 			nextState = { ...nextState, ...{
-				currentMessage: messages.last(),
-				messages: messages.get(),
+				activeMessages: activeMessages.values(),
+				messages: messages.values(),
 			}};
 			break;
 		}
 
-		case 'UNSET_CURRENT_MESSAGE': {
+		case 'REMOVE_MESSAGE': {
+			activeMessages.removeOldest();
 			nextState = { ...nextState, ... {
-				currentMessage: emptyMessage,
+				activeMessages: activeMessages.values(),
 			}};
 			break;
 		}
