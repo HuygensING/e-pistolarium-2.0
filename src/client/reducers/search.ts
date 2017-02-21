@@ -1,7 +1,7 @@
 const initialState = {
 	nextLetter: null,
 	prevLetter: null,
-	result: [],
+	result: null,
 	resultCount: 0,
 	results: {},
 };

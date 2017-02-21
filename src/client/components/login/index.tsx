@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IMessage } from '../../interfaces';
-import { removeOldestMessage } from '../../actions/message';
 import { userLogin } from '../../actions/user';
 import Message from '../messages/index';
 
@@ -17,7 +16,6 @@ class Login extends React.Component<IEventsProps, {}> {
 			<div className="login">
 				<Message
 					messagess={this.props.activeMessages}
-					removeOldestMessage={this.props.removeOldestMessage}
 				/>
 				<form>
 					<ul>
@@ -62,6 +60,5 @@ export default connect(
 	}),
 	{
 		userLogin,
-		removeOldestMessage,
 	},
 )(Login);

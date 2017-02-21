@@ -31,10 +31,12 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 		places: false,
 	};
 
+	private articleNode: HTMLElement;
+
 	public componentDidMount() {
 		const { id, subId } = this.props.params;
 		this.props.fetchLetter(id, subId);
-		document.addEventListener('mouseup', this.props.createAnnotation);
+		this.articleNode.addEventListener('mouseup', this.props.createAnnotation);
 	}
 
 	public componentWillReceiveProps(nextProps) {
@@ -43,7 +45,7 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 	}
 
 	public componentWillUnmount() {
-		document.removeEventListener('mouseup', this.props.createAnnotation);
+		this.articleNode.removeEventListener('mouseup', this.props.createAnnotation);
 	}
 
 	private handleToggleAnnotationType = (type) => {
@@ -78,7 +80,7 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 				<article
 					className="letter"
 				  ref={(el) => {
-				  	this.articleEl = el;
+				  	this.articleNode = el;
 				  }}
 				>
 					<div

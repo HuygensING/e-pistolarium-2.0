@@ -13,5 +13,3 @@ export default (props) =>
 			onSelect={(letter) => history.push(`/letters/${letter.pid}`)}
 		/>
 	</div>;
-
-// baseURL: 'http://tc13.huygens.knaw.nl/glp-ckcc/',

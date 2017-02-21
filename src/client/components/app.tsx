@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { removeOldestMessage } from '../actions/message';
 import Messages from './messages';
 import {fetchLetter, goToLetter} from "../actions/letter";
 import { receiveSearchResult } from "../actions/search";
@@ -10,7 +9,6 @@ const App = (props) =>
 	<div className="app">
 		<Messages
 			messages={props.activeMessages}
-			removeOldestMessage={props.removeOldestMessage}
 		/>
 		<header><h1>Circulation of Knowledge and Learned Practices in the 17th-century Dutch Republic</h1></header>
 		<div className="body">
@@ -33,6 +31,5 @@ export default connect(
 		fetchLetter,
 		receiveSearchResult,
 		removeNewAnnotation,
-		removeOldestMessage,
 	},
 )(App);
