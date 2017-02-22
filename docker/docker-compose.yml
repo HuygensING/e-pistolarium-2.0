@@ -1,11 +1,11 @@
 version: '2'
 services:
-  client:
-    build: "./client"
-    ports:
-     - "3000:3000"
   server:
-    build: "./server"
+    build: ./server
     ports:
-     - "3999:3999"
+      - "3999:3999"
+  client:
+    build: ./client
+    ports:
+      - "3000:3000"
 
