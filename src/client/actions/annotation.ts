@@ -33,9 +33,9 @@ class TreeWalkerContainer {
 				NodeFilter.FILTER_ACCEPT;
 		};
 
-		filter.acceptNode = filter;
+		filter['acceptNode'] = filter;
 
-		return document.createTreeWalker(range.commonAncestorContainer, NodeFilter.SHOW_TEXT, filter, false);
+		return document.createTreeWalker(range.commonAncestorContainer, NodeFilter.SHOW_TEXT, <any> filter, false);
 	}
 }
 

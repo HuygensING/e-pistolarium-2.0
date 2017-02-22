@@ -15,7 +15,7 @@ class Login extends React.Component<IEventsProps, {}> {
 		return (
 			<div className="login">
 				<Message
-					messagess={this.props.activeMessages}
+					messages={this.props.activeMessages}
 				/>
 				<form>
 					<ul>

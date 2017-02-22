@@ -2,17 +2,22 @@ import * as React from 'react';
 import Button from './button';
 import history from '../../../routes/history';
 
-export default (props) =>
+export default ({
+	prevLetter,
+	nextLetter,
+	toggleAnnotationType,
+	goToLetter,
+}) =>
 	<div className="menu">
 		<div className="back">
 			<Button onClick={() => history.push('/')}>↞ Search</Button>
 		</div>
 		<div className="letter">
 			{
-				props.prevLetter &&
+				prevLetter &&
 				<Button
 					className="previous"
-				  onClick={() => props.goToLetter(props.prevLetter)}
+				  onClick={() => goToLetter(prevLetter)}
 				>
 					← previous
 				</Button>
@@ -20,7 +25,7 @@ export default (props) =>
 			<div className="toggles">
 				<Button
 					className="person"
-					onClick={() => props.toggleAnnotationType('persons')}
+					onClick={() => toggleAnnotationType('persons')}
 					toggle
 				>
 					<svg viewBox="0 0 512 512">
@@ -30,7 +35,7 @@ export default (props) =>
 
 				<Button
 					className="place"
-					onClick={() => props.toggleAnnotationType('places')}
+					onClick={() => toggleAnnotationType('places')}
 					toggle
 				>
 					<svg viewBox="0 0 512 512">
@@ -40,7 +45,7 @@ export default (props) =>
 
 				<Button
 					className="date"
-					onClick={() => props.toggleAnnotationType('dates')}
+					onClick={() => toggleAnnotationType('dates')}
 					toggle
 				>
 					<svg viewBox="0 0 512 512">
@@ -49,10 +54,10 @@ export default (props) =>
 				</Button>
 			</div>
 			{
-				props.nextLetter &&
+				nextLetter &&
 				<Button
 					className="next"
-					onClick={() => props.goToLetter(props.nextLetter)}
+					onClick={() => goToLetter(nextLetter)}
 				>
 					next →
 				</Button>

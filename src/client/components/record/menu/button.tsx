@@ -1,6 +1,12 @@
 import * as React from 'react';
 import * as cx from 'classnames';
 
+interface IButtonProps {
+	className?: string;
+	onClick: (ev: Event) => void;
+	toggle?: boolean;
+}
+
 interface IButtonState {
 	active: boolean;
 }
