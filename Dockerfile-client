@@ -1,0 +1,15 @@
+FROM node:7.6
+
+COPY ./*.js /app/
+COPY ./*.html /app/
+COPY ./*.json /app/
+COPY ./src /app/src/
+
+WORKDIR /app
+
+RUN npm i
+RUN npm run build
+
+EXPOSE 3000
+
+CMD npm run server-client
