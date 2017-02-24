@@ -6,7 +6,7 @@
 	// other aside minimal width.
 	asideWidth = "calc(50% - %s)" % 320px
 
-	&.create-annotation
+	&.show-aside
 		aside.right
 			margin-left 0
 
@@ -33,38 +33,38 @@
 	// but big enough to show the .letter and the aside.right (big).
 	// .letter (640px) + aside.right (480px) = 1120px
 	@media (max-width 1120px)
-		&.create-annotation
+		&.show-aside
 			aside.left
 				margin-left -1 * asideMinWidth
 
-		&.create-annotation
+		&.show-aside
 			aside.right
 				width asideMinWidth
 
-				.new-annotation
+				.annotation
 					width asideMinWidth
 
 	// The screen is big enough to show the aside.left, the .letter
 	// and the aside.right.
 	// Two aside's (2 * 360px) + .letter (640px) = 1360px
 	@media (min-width 1120px) and (max-width 1360px)
-		&.create-annotation
+		&.show-aside
 			aside.left
 				margin-left -1 * asideMinWidth
 
 			aside.right
 				width asideRightMinWidthBig
 
-				.new-annotation
+				.annotation
 					width asideRightMinWidthBig
 
 	// The screen is big enough to show the aside.left,
 	// the letter and the aside.right (big).
 	// Two aside's (2 * 480px) + .letter (640px) = 1600px
 	@media (min-width 1600px)
-		&.create-annotation
+		&.show-aside
 			aside.right
 				width asideRightMinWidthBig
 
-				.new-annotation
+				.annotation
 					width asideRightMinWidthBig

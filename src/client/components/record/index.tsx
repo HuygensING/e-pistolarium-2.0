@@ -2,20 +2,23 @@ import * as React from 'react';
 import * as cx from 'classnames';
 import Meta from './meta';
 import NewAnnotation from './new-annotation';
+import Annotation from './annotation';
 import Menu from './menu';
 import Article from './article';
+import {INewAnnotation, IAnnotation} from "../../reducers/annotation";
 
 interface IRecordProps {
+	annotation: IAnnotation;
+	cancelAnnotation: () => void;
 	createAnnotation: () => void;
 	fetchLetter: (id: string, subId: string) => void;
 	goToLetter: (letter) => void;
 	letter: any;
-	newAnnotationOffset: number;
-	newAnnotationRange: Range;
-	newAnnotationText: string;
+	newAnnotation: INewAnnotation;
 	nextLetter: any;
 	removeNewAnnotation: () => void;
 	saveNewAnnotation: () => void;
+	setActiveAnnotation: (id: string) => void;
 	params: any;
 	prevLetter: any;
 }
@@ -50,24 +53,32 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 	};
 
 	public render() {
-		const { meta, pid } = this.props.letter;
-		let { keywords } = this.props.letter;
+		const {
+			annotation,
+			goToLetter,
+			letter,
+			newAnnotation,
+			nextLetter,
+			prevLetter
+		} = this.props;
+		const { meta, pid } = letter;
+		let { keywords } = letter;
 		keywords = (keywords != null && keywords.hasOwnProperty('words')) ?
 			keywords.words.join(', ') :
 			null;
 
 		return (
 			<div className={cx('record', {
-				'create-annotation': this.props.newAnnotationRange != null,
+				'show-aside': newAnnotation.text != null || annotation.name != null,
 				dates: this.state.dates,
 				persons: this.state.persons,
 				places: this.state.places,
 			})}>
 				<Menu
 					{...this.state}
-					goToLetter={this.props.goToLetter}
-					nextLetter={this.props.nextLetter}
-					prevLetter={this.props.prevLetter}
+					goToLetter={goToLetter}
+					nextLetter={nextLetter}
+					prevLetter={prevLetter}
 					toggleAnnotationType={this.handleToggleAnnotationType}
 				/>
 				<aside className="left">
@@ -75,7 +86,14 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 				</aside>
 				<Article {...this.props} />
 				<aside className="right">
-					<NewAnnotation {...this.props} />
+					{
+						newAnnotation.text != null &&
+						<NewAnnotation {...this.props} />
+					}
+					{
+						annotation.name != null &&
+						<Annotation {...this.props} />
+					}
 				</aside>
 			</div>
 		)

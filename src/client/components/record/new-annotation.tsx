@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Field from './field';
+import {INewAnnotation} from "../../reducers/annotation";
 
 interface INewAnnotationProps {
-	newAnnotationOffset: number;
-	newAnnotationText: string;
+	newAnnotation: INewAnnotation;
 	removeNewAnnotation: () => void;
 	saveNewAnnotation: () => void;
 }
@@ -11,17 +11,17 @@ interface INewAnnotationProps {
 class NewAnnotation extends React.Component<INewAnnotationProps, null> {
 	public render() {
 		return (
-			<div className="new-annotation">
+			<div className="new annotation">
 				<h4>Create annotation</h4>
 				<div className="body">
 					<ul>
 						<Field label="Selected text">
 							<span className="left-double-quote">“</span>
-							<span className="text">{this.props.newAnnotationText}</span>
+							<span className="text">{this.props.newAnnotation.text}</span>
 							<span className="right-double-quote">”</span>
 						</Field>
 						<Field label="Offset">
-							{'' + this.props.newAnnotationOffset}
+							{'' + this.props.newAnnotation.offset}
 						</Field>
 					</ul>
 					<footer>

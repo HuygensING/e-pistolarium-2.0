@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import Messages from './messages';
 import {fetchLetter, goToLetter} from "../actions/letter";
 import { receiveSearchResult } from "../actions/search";
-import {createAnnotation, removeNewAnnotation, saveNewAnnotation} from "../actions/annotation/index";
+import {
+	createAnnotation,
+	removeNewAnnotation,
+	saveNewAnnotation,
+	setActiveAnnotation,
+	cancelAnnotation,
+} from "../actions/annotation/index";
 
 const App = (props) =>
 	<div className="app">
@@ -18,20 +24,22 @@ const App = (props) =>
 
 export default connect(
 	(state) => ({
+		annotation: state.annotation.active,
 		letter: state.letter.current,
+		// TODO rename to 'messages' (remove 'active')
 		activeMessages: state.message.activeMessages,
 		nextLetter: state.search.nextLetter,
-		newAnnotationOffset: state.annotation.offset,
-		newAnnotationRange: state.annotation.range,
-		newAnnotationText: state.annotation.text,
+		newAnnotation: state.annotation.new,
 		prevLetter: state.search.prevLetter,
 	}),
 	{
+		cancelAnnotation,
 		createAnnotation,
 		goToLetter,
 		fetchLetter,
 		receiveSearchResult,
 		removeNewAnnotation,
 		saveNewAnnotation,
+		setActiveAnnotation,
 	},
 )(App);

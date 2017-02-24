@@ -5,6 +5,7 @@ import wrapTextNodes from '../../../utils/wrap-text-nodes';
 interface IArticleProps {
 	createAnnotation: () => void;
 	letter: any;
+	setActiveAnnotation: (id: string, selectedText: string) => void;
 }
 
 class Article extends React.Component<IArticleProps, null> {
@@ -40,6 +41,13 @@ class Article extends React.Component<IArticleProps, null> {
 		this.articleNode.removeEventListener('mouseup', this.props.createAnnotation);
 	}
 
+	private handleClick = (ev) => {
+		if (ev.target.matches('.persname[data-xref]')) {
+			const id = ev.target.getAttribute('data-xref');
+			this.props.setActiveAnnotation(id, ev.target.innerText)
+		}
+	};
+
 	render() {
 		const { simLetters, text } = this.props.letter;
 
@@ -50,6 +58,7 @@ class Article extends React.Component<IArticleProps, null> {
 				<div
 					className="text"
 					dangerouslySetInnerHTML={{__html: text}}
+					onClick={this.handleClick}
 					ref={(el) => {
 				  	this.articleNode = el;
 				  }}

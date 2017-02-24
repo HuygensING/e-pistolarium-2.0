@@ -2,15 +2,43 @@ import 'whatwg-fetch';
 import {addMessage} from "../message";
 import TreeWalkerContainer from '../../utils/wrap-text-nodes/tree-walker-container';
 import findCommonAncestor from './find-common-ancestor';
-import {backendUrl} from "../../../server/constants";
+import {backendUrl, graphqlUrl} from "../../../server/constants";
 import {fetchLetterText} from "../letter";
+import timbuctooIdByXmlId from '../../utils/timbuctoo-id-by-xml-id';
+
+export const setActiveAnnotation = (id, selectedText) => async (dispatch, getState) => {
+	const timbuctooId = timbuctooIdByXmlId[id.slice(10)];
+	const body = `{person(id:"${timbuctooId}") {name properties {name value}}}`;
+	const response = await fetch(graphqlUrl, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/graphql',
+		},
+		body,
+	});
+	const json = await response.json();
+
+	dispatch({
+		type: 'SET_ACTIVE_ANNOTATION',
+		annotation: {
+			birthDate: json.data.person.properties[0].value,
+			deathDate: json.data.person.properties[1].value,
+			name: json.data.person.name,
+			selectedText,
+			type: 'person',
+		},
+	});
+};
+
+export const cancelAnnotation = () => (dispatch) =>
+	dispatch({ type: 'CANCEL_ANNOTATION'});
 
 export const removeNewAnnotation = () => (dispatch) =>
 	dispatch({ type: 'REMOVE_NEW_ANNOTATION'});
 
 export const saveNewAnnotation = () => async (dispatch, getState) => {
 	const { annotation, letter } = getState();
-	const { length, offset, text, xmlId } = annotation;
+	const { length, offset, text, xmlId } = annotation.new;
 	// TODO check if all data is present
 	const url = `${backendUrl}letters/${letter.current.pid}/annotations?xmlId=${xmlId}&offset=${offset}&length=${text.length}&name=user&json=1`;
 	const response = await fetch(url);
@@ -21,6 +49,15 @@ export const saveNewAnnotation = () => async (dispatch, getState) => {
 		type: 'UPDATE_LETTER_TEXT',
 		text: nextLetterText,
 	});
+
+	dispatch({
+		type: 'REMOVE_NEW_ANNOTATION',
+	});
+
+	addMessage({
+		type: 'success',
+		value: 'Annotation saved.',
+	}, dispatch);
 };
 
 export const createAnnotation = () => (dispatch, getState) => {
