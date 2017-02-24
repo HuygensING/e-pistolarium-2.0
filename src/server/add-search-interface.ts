@@ -29,7 +29,6 @@ const toResult = (letter) => {
 		senderLoc: letter.senderLoc,
 	};
 	letter.displayName = `From ${letter.sender} to ${letter.recipient}`;
-	console.log(letter);
 	return letter;
 };
 

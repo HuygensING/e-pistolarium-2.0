@@ -1,4 +1,4 @@
-FROM node:7.6-alpine
+# http://stackoverflow.com/questions/33357567/econnrefused-for-postgres-on-nodejs-with-dockersFROM node:7.6-alpine
 
 COPY ./*.js /app/
 COPY ./*.html /app/

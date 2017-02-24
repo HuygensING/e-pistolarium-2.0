@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
 			}};
 
 			const nextAll = state.all
-				.filter((l) => l.pid === state.current.pid)
+				.filter((l) => l.pid !== state.current.pid)
 				.concat(nextCurrent);
 
 			nextState = { ...nextState, ...{
