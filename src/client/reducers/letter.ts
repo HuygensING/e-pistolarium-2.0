@@ -5,7 +5,7 @@ const initialState = {
 		meta: null,
 		pid: null,
 		simLetters: null,
-		text: '',
+		text: null,
 	},
 };
 
@@ -29,7 +29,19 @@ export default (state = initialState, action) => {
 		}
 
 		case 'UPDATE_LETTER_TEXT': {
-			// todo implement
+			const nextCurrent = {...state.current, ...{
+				text: action.text,
+			}};
+
+			const nextAll = state.all
+				.filter((l) => l.pid === state.current.pid)
+				.concat(nextCurrent);
+
+			nextState = { ...nextState, ...{
+				all: nextAll,
+				current: nextCurrent,
+			}};
+
 			break;
 		}
 

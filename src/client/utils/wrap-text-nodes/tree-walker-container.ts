@@ -35,7 +35,11 @@ export default class TreeWalkerContainer {
 
 		filter['acceptNode'] = filter;
 
-		return document.createTreeWalker(this.commonAncestor, NodeFilter.SHOW_TEXT, <any> filter, false);
+		const commonAncestor = (this.commonAncestor != null) ?
+			this.commonAncestor :
+			range.commonAncestorContainer;
+
+		return document.createTreeWalker(commonAncestor, NodeFilter.SHOW_TEXT, <any> filter, false);
 	}
 }
 

@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as cx from 'classnames';
 import Meta from './meta';
 import NewAnnotation from './new-annotation';
-import SimilarLetters from './similar-letters';
 import Menu from './menu';
+import Article from './article';
 
 interface IRecordProps {
 	createAnnotation: () => void;
@@ -32,21 +32,14 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 		places: true,
 	};
 
-	private articleNode: HTMLElement;
-
 	public componentDidMount() {
 		const { id, subId } = this.props.params;
 		this.props.fetchLetter(id, subId);
-		this.articleNode.addEventListener('mouseup', this.props.createAnnotation);
 	}
 
 	public componentWillReceiveProps(nextProps) {
-		const { id, subId } = nextProps.params;
+		const {id, subId} = nextProps.params;
 		this.props.fetchLetter(id, subId);
-	}
-
-	public componentWillUnmount() {
-		this.articleNode.removeEventListener('mouseup', this.props.createAnnotation);
 	}
 
 	private handleToggleAnnotationType = (type) => {
@@ -56,7 +49,7 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 	};
 
 	public render() {
-		const { meta, pid, simLetters, text } = this.props.letter;
+		const { meta, pid } = this.props.letter;
 		let { keywords } = this.props.letter;
 		keywords = (keywords != null && keywords.hasOwnProperty('words')) ?
 			keywords.words.join(', ') :
@@ -79,18 +72,7 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 				<aside className="left">
 					<Meta {...meta} keywords={keywords} id={pid} />
 				</aside>
-				<article
-					className="letter"
-				  ref={(el) => {
-				  	this.articleNode = el;
-				  }}
-				>
-					<div
-						className="text"
-						dangerouslySetInnerHTML={{__html: text}}
-					/>
-					<SimilarLetters similarLetters={simLetters} />
-				</article>
+				<Article {...this.props} />
 				<aside className="right">
 					<NewAnnotation {...this.props} />
 				</aside>

@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import {addMessage} from "../message";
-import TreeWalkerContainer from './tree-walker-container';
+import TreeWalkerContainer from '../../utils/wrap-text-nodes/tree-walker-container';
 import findCommonAncestor from './find-common-ancestor';
 import {backendUrl} from "../../../server/constants";
 import {fetchLetterText} from "../letter";
@@ -15,7 +15,7 @@ export const saveNewAnnotation = () => async (dispatch, getState) => {
 	const url = `${backendUrl}letters/${letter.current.pid}/annotations?xmlId=${xmlId}&offset=${offset}&length=${text.length}&name=user&json=1`;
 	const response = await fetch(url);
 	const json = await response.json();
-	const nextLetterText = await fetchLetterText(letter.current.pid));
+	const nextLetterText = await fetchLetterText(letter.current.pid);
 
 	dispatch({
 		type: 'UPDATE_LETTER_TEXT',
