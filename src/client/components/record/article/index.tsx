@@ -46,13 +46,13 @@ class Article extends React.Component<IArticleProps, null> {
 		return (
 			<article
 				className="letter"
-				ref={(el) => {
-				  	this.articleNode = el;
-				  }}
 			>
 				<div
 					className="text"
 					dangerouslySetInnerHTML={{__html: text}}
+					ref={(el) => {
+				  	this.articleNode = el;
+				  }}
 				/>
 				<SimilarLetters similarLetters={simLetters} />
 			</article>
