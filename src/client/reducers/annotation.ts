@@ -13,6 +13,7 @@ export interface IAnnotation {
 	name: string;
 	selectedText: string;
 	type: string;
+	xmlId: string;
 }
 
 interface IState {
@@ -27,6 +28,7 @@ const initialState: IState = {
 		name: null,
 		selectedText: null,
 		type: null,
+		xmlId: null,
 	},
 	new: {
 		endAnchor: null,

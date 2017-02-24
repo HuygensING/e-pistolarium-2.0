@@ -1,8 +1,10 @@
 import * as React from 'react';
 import SimilarLetters from './similar-letters';
 import wrapTextNodes from '../../../utils/wrap-text-nodes';
+import {IAnnotation} from "../../../reducers/annotation";
 
 interface IArticleProps {
+	annotation: IAnnotation;
 	createAnnotation: () => void;
 	letter: any;
 	setActiveAnnotation: (id: string, selectedText: string) => void;
@@ -15,8 +17,16 @@ class Article extends React.Component<IArticleProps, null> {
 		this.articleNode.addEventListener('mouseup', this.props.createAnnotation);
 	}
 
+	public componentWillReceiveProps(nextProps) {
+		if (nextProps.annotation.xmlId == null) this.deactivateAnnotations();
+	}
+
 	public componentDidUpdate(prevProps) {
-		const { text } = this.props.letter;
+		const { annotation, letter } = this.props;
+		const { text } = letter;
+
+		// Wrap text nodes inside user annotations with a span,
+		// so they can be highlighted.
 		if (text != null && text != prevProps.letter.text) {
 			const userAnnotationBeginTags = this.articleNode
 				.querySelectorAll('.userannotation[data-type="begin"]');
@@ -35,10 +45,23 @@ class Article extends React.Component<IArticleProps, null> {
 				wrapTextNodes(node1, node2, { className: 'user-annotation-text'});
 			})
 		}
+
+		// Activate the active annotation
+		if (annotation.xmlId != null) {
+			this.deactivateAnnotations(this.props);
+
+			Array.from(this.articleNode.querySelectorAll(`.persname[data-xref="${annotation.xmlId}"]`))
+				.forEach((anno) => anno.classList.add('active'));
+		}
 	}
 
 	public componentWillUnmount() {
 		this.articleNode.removeEventListener('mouseup', this.props.createAnnotation);
+	}
+
+	private deactivateAnnotations() {
+		Array.from(this.articleNode.querySelectorAll('.persname.active'))
+			.forEach((anno) => anno.classList.remove('active'));
 	}
 
 	private handleClick = (ev) => {

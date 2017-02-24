@@ -26,6 +26,7 @@ export const setActiveAnnotation = (id, selectedText) => async (dispatch, getSta
 			name: json.data.person.name,
 			selectedText,
 			type: 'person',
+			xmlId: id,
 		},
 	});
 };
