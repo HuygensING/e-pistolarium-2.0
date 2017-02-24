@@ -1,5 +1,5 @@
 import {backendUrl} from "./constants";
-import xml2html, { BaseTag } from 'xml2html';
+import xml2html, { BaseTag } from 'hi-xml2html';
 const url = (id) => `${backendUrl}letters/${id}/tei`;
 
 class Br extends BaseTag {
