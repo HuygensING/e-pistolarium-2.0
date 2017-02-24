@@ -6,8 +6,12 @@ import {addMessage} from "./message";
 const metadataUrl = (id) =>
 	`${backendUrl}letters/${id}/text`;
 
-const teiUrl = (id) => `/api/tei?id=${id}`;
-	// `http://demo7.huygens.knaw.nl/glp-ckcctest/letters/${id.replace('-', '/')}/tei`;
+export const fetchLetterText = async (letterId) => {
+	const url = `/api/tei?id=${letterId}`;
+	const response = await fetch(url);
+	const text = await response.text();
+	return text;
+};
 
 export const fetchLetter = (id: string, subId: string) => async (dispatch, getState) => {
 	const { all, current } = getState().letter;
@@ -31,9 +35,8 @@ export const fetchLetter = (id: string, subId: string) => async (dispatch, getSt
 	const metadata = await metadataResponse.json();
 
 	// Fetch TEI/XML.
-	const teiResponse = await fetch(teiUrl(letterId));
-	const tei = await teiResponse.text();
-	metadata.tei = tei;
+	const letterText = await fetchLetterText(letterId);
+	metadata.text = letterText;
 
 	// The default message is an error.
 	let message = {
@@ -44,7 +47,7 @@ export const fetchLetter = (id: string, subId: string) => async (dispatch, getSt
 
 	// If the responses are OK, set the new letter and override the error message
 	// with a success message.
-	if (metadataResponse.status === 200 && teiResponse.status === 200) {
+	if (metadataResponse.status === 200) {
 		dispatch({
 			letter: metadata,
 			type: 'RECEIVE_LETTER',

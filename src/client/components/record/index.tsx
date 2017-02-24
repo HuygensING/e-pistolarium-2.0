@@ -14,6 +14,7 @@ interface IRecordProps {
 	newAnnotationText: string;
 	nextLetter: any;
 	removeNewAnnotation: () => void;
+	saveNewAnnotation: () => void;
 	params: any;
 	prevLetter: any;
 }
@@ -26,9 +27,9 @@ interface IRecordState {
 
 class Record extends React.Component<IRecordProps, IRecordState> {
 	public state = {
-		dates: false,
-		persons: false,
-		places: false,
+		dates: true,
+		persons: true,
+		places: true,
 	};
 
 	private articleNode: HTMLElement;
@@ -55,7 +56,7 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 	};
 
 	public render() {
-		const { meta, pid, simLetters, tei, text } = this.props.letter;
+		const { meta, pid, simLetters, text } = this.props.letter;
 		let { keywords } = this.props.letter;
 		keywords = (keywords != null && keywords.hasOwnProperty('words')) ?
 			keywords.words.join(', ') :
@@ -69,6 +70,7 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 				places: this.state.places,
 			})}>
 				<Menu
+					{...this.state}
 					goToLetter={this.props.goToLetter}
 					nextLetter={this.props.nextLetter}
 					prevLetter={this.props.prevLetter}
@@ -85,7 +87,7 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 				>
 					<div
 						className="text"
-						dangerouslySetInnerHTML={{__html: tei}}
+						dangerouslySetInnerHTML={{__html: text}}
 					/>
 					<SimilarLetters similarLetters={simLetters} />
 				</article>

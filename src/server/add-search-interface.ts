@@ -1,6 +1,5 @@
 import constructQuery from './construct-query';
-
-const ckccBackendUrl = 'http://tc13.huygens.knaw.nl/glp-ckcc/search';
+import { backendUrl } from "./constants";
 
 const addFacet = (data, name, labels, type = 'LIST') => {
 	return {
@@ -62,7 +61,7 @@ export default (app, state) => {
 		const query = initFacets ?
 			encodeURIComponent('*:*') :
 			constructQuery(req.body, state);
-		const result = await fetch(ckccBackendUrl, {
+		const result = await fetch(`${backendUrl}search`, {
 			method: 'POST',
 			body: `q=${query}`,
 		});
@@ -75,7 +74,7 @@ export default (app, state) => {
 	});
 
 	app.get('/init-facets', async (req, res) => {
-		const url = `${ckccBackendUrl}/${req.query.key}?rows=0&verbose=true`;
+		const url = `${backendUrl}search/${req.query.key}?rows=0&verbose=true`;
 		const data = await fetchAndSendResult(url, res);
 		state.set('personLabels', data.personLabels.reduce(toLookup, {}));
 		state.set('placeLabels', data.placeLabels.reduce(toLookup, {}));
@@ -83,7 +82,7 @@ export default (app, state) => {
 	});
 
 	app.get('/facets', async (req, res) => {
-		const url = `${ckccBackendUrl}/${req.query.key}?rows=50&verbose=true`;
+		const url = `${backendUrl}search/${req.query.key}?rows=50&verbose=true`;
 		fetchAndSendResult(url, res);
 	});
 }

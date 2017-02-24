@@ -4,6 +4,7 @@ import Field from './field';
 interface INewAnnotationProps {
 	newAnnotationText: string;
 	removeNewAnnotation: () => void;
+	saveNewAnnotation: () => void;
 }
 
 class NewAnnotation extends React.Component<INewAnnotationProps, null> {
@@ -18,6 +19,8 @@ class NewAnnotation extends React.Component<INewAnnotationProps, null> {
 							<span className="text">{this.props.newAnnotationText}</span>
 							<span className="right-double-quote">”</span>
 						</Field>
+						<Field label="name">
+						</Field>
 					</ul>
 					<footer>
 						<div
@@ -26,7 +29,12 @@ class NewAnnotation extends React.Component<INewAnnotationProps, null> {
 						>
 							Cancel
 						</div>
-						<div className="save">Save</div>
+						<div
+							className="save"
+							onClick={this.props.saveNewAnnotation}
+						>
+							Save
+						</div>
 					</footer>
 				</div>
 			</div>

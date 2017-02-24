@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Messages from './messages';
 import {fetchLetter, goToLetter} from "../actions/letter";
 import { receiveSearchResult } from "../actions/search";
-import {createAnnotation, removeNewAnnotation} from "../actions/annotation";
+import {createAnnotation, removeNewAnnotation, saveNewAnnotation} from "../actions/annotation/index";
 
 const App = (props) =>
 	<div className="app">
@@ -31,5 +31,6 @@ export default connect(
 		fetchLetter,
 		receiveSearchResult,
 		removeNewAnnotation,
+		saveNewAnnotation,
 	},
 )(App);

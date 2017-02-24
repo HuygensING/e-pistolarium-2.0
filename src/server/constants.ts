@@ -1,1 +1,1 @@
-export const backendUrl = 'http://tc13.huygens.knaw.nl/glp-ckcc/'
+export const backendUrl = 'http://demo7.huygens.knaw.nl/glp-ckcctest/';

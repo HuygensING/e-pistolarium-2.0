@@ -16,11 +16,11 @@ activeAnnotationType()
 	white-space nowrap
 	width 100%
 
-	aside, & > .letter
+	aside, article.letter
 		inline-block()
 		white-space normal
 
-	& > .letter
+	article.letter
 		font-size 1.4em
 		height calc(100% - 40px)
 		line-height 1.8em
@@ -30,8 +30,11 @@ activeAnnotationType()
 		width calc(100% - 360px)
 
 		.text
-			p
+			.p
 				margin 0 0 1em 0
+
+				*
+					display inline
 
 			span.highlight
 				background-color rgba(yellow, 0.3)
@@ -40,14 +43,15 @@ activeAnnotationType()
 				color black
 
 	&.persons
-		persName
+		article .persname
 			activeAnnotationType()
 			border-bottom 1px solid ep_purple
 
 			&:after
 				background-image url('/static/images/android-person.svg')
+
 	&.places
-		placeName
+		article .placename
 			activeAnnotationType()
 			border-bottom 1px solid ep_pink
 
@@ -55,7 +59,7 @@ activeAnnotationType()
 				background-image url('/static/images/android-globe.svg')
 
 	&.dates
-		date
+		article .date
 			activeAnnotationType()
 			border-bottom 1px solid ep_green
 

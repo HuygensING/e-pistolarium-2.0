@@ -5,7 +5,6 @@ const initialState = {
 		meta: null,
 		pid: null,
 		simLetters: null,
-		tei: '',
 		text: '',
 	},
 };
@@ -26,6 +25,11 @@ export default (state = initialState, action) => {
 			nextState = { ...nextState, ...{
 				current: action.letter,
 			}};
+			break;
+		}
+
+		case 'UPDATE_LETTER_TEXT': {
+			// todo implement
 			break;
 		}
 
