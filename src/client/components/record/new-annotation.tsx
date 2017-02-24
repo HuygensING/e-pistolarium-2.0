@@ -2,6 +2,7 @@ import * as React from 'react';
 import Field from './field';
 
 interface INewAnnotationProps {
+	newAnnotationOffset: number;
 	newAnnotationText: string;
 	removeNewAnnotation: () => void;
 	saveNewAnnotation: () => void;
@@ -19,7 +20,8 @@ class NewAnnotation extends React.Component<INewAnnotationProps, null> {
 							<span className="text">{this.props.newAnnotationText}</span>
 							<span className="right-double-quote">”</span>
 						</Field>
-						<Field label="name">
+						<Field label="Offset">
+							{'' + this.props.newAnnotationOffset}
 						</Field>
 					</ul>
 					<footer>

@@ -10,6 +10,7 @@ interface IRecordProps {
 	fetchLetter: (id: string, subId: string) => void;
 	goToLetter: (letter) => void;
 	letter: any;
+	newAnnotationOffset: number;
 	newAnnotationRange: Range;
 	newAnnotationText: string;
 	nextLetter: any;

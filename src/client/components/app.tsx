@@ -21,6 +21,7 @@ export default connect(
 		letter: state.letter.current,
 		activeMessages: state.message.activeMessages,
 		nextLetter: state.search.nextLetter,
+		newAnnotationOffset: state.annotation.offset,
 		newAnnotationRange: state.annotation.range,
 		newAnnotationText: state.annotation.text,
 		prevLetter: state.search.prevLetter,
