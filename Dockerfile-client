@@ -1,4 +1,4 @@
-FROM node:7.6
+FROM node:7.6-alpine
 
 COPY ./*.js /app/
 COPY ./*.html /app/
