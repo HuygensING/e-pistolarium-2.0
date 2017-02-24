@@ -9,6 +9,16 @@ export default (props) =>
 				baseURL: '/api/search-result-location',
 				searchPath: '',
 			}}
+			labels={{
+				facetTitles: {
+					corpora: 'Corpora',
+					recipientLocs: 'Recipient locations',
+					recipients: 'Recipients',
+					senderLocs: 'Sender locations',
+					senders: 'Senders',
+					term: 'Full text search',
+				}
+			}}
 			onChange={props.receiveSearchResult}
 			onSelect={(letter) => history.push(`/letters/${letter.pid}`)}
 		/>

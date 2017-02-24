@@ -1,3 +1,24 @@
 .home
 	height 100%
 	width 100%
+
+	.hire-faceted-search-current-query
+		margin-top 1.5em
+
+		label, ul
+			font-size 0.8em
+
+		label
+			label()
+
+		ul
+			margin-bottom 1.5em
+
+			li
+				inline-block()
+
+				&:after
+					content ';\00a0'
+
+				&:last-child:after
+					content ''
