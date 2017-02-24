@@ -48,7 +48,7 @@ class Article extends React.Component<IArticleProps, null> {
 
 		// Activate the active annotation
 		if (annotation.xmlId != null) {
-			this.deactivateAnnotations(this.props);
+			this.deactivateAnnotations();
 
 			Array.from(this.articleNode.querySelectorAll(`.persname[data-xref="${annotation.xmlId}"]`))
 				.forEach((anno) => anno.classList.add('active'));
