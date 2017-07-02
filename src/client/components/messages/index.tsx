@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import * as cx from 'classnames';
 
-export default ({ messages }) =>
+const Messages = (props) =>
 	<ul className="messages">
 		{
-			messages.map((message, i) =>
+			props.messages.map((message, i) =>
 				<li
 					className={cx('message', message.type)}
 					key={i}
@@ -14,3 +15,9 @@ export default ({ messages }) =>
 			)
 		}
 	</ul>;
+
+export default connect(
+	state => ({
+		messages: []
+	})
+)(Messages);

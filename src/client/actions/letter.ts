@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import {backendUrl} from "../../server/constants";
-import history from '../routes/history';
+import history from '../store/history';
 import {addMessage} from "./message";
 
 const metadataUrl = (id) =>

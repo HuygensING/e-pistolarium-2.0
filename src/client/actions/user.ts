@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import history from '../routes/history';
+import history from '../store/history';
 import {addMessage} from "./message";
 
 export const userLogin = (formData) => async (dispatch/*, getState */) => {

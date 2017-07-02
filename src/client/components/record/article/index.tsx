@@ -67,6 +67,7 @@ class Article extends React.Component<IArticleProps, null> {
 	private handleClick = (ev) => {
 		if (ev.target.matches('.persname[data-xref]')) {
 			const id = ev.target.getAttribute('data-xref');
+			console.log(id);
 			this.props.setActiveAnnotation(id, ev.target.innerText)
 		}
 	};

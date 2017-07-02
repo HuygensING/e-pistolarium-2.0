@@ -55,15 +55,16 @@ const fetchAndSendResult = async (url, res) => {
 
 export default (app, state) => {
 	app.post('/search-result-location', async (req, res) => {
-		const { facetValues, sortParameters, term } = req.body;
-		const initFacets = (!facetValues.length && !sortParameters.length && term === '');
-		const query = initFacets ?
+		const { facetValues, sortParameters, term } = req.body; const initFacets = (!facetValues.length && !sortParameters.length && term === ''); const query = initFacets ?
 			encodeURIComponent('*:*') :
 			constructQuery(req.body, state);
 		const result = await fetch(`${backendUrl}search`, {
-			method: 'POST',
-			body: `q=${query}`,
-		});
+				body: `q=${query}`,
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				method: 'POST',
+			});
 		const data = await result.json();
 		const location = initFacets ?
 			`/api/init-facets?key=${data.key}` :

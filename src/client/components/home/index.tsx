@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import HireFacetedSearch from 'hire-faceted-search';
-import history from '../../routes/history';
+import history from '../../store/history';
+import {receiveSearchResult} from "../../actions/search";
 
-export default (props) =>
+const Search = (props) =>
 	<div className="home">
 		<HireFacetedSearch
 			config={{
@@ -23,3 +25,10 @@ export default (props) =>
 			onSelect={(letter) => history.push(`/letters/${letter.pid}`)}
 		/>
 	</div>;
+
+export default connect(
+	null,
+	{
+		receiveSearchResult
+	}
+)(Search);

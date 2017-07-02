@@ -10,6 +10,7 @@
     "build-server": "tsc -p src/server",
     "server-client": "node server.js",
     "server": "nodemon build/server",
+    "test": "jest",
     "watch-client": "webpack -w",
     "watch-server": "tsc -w -p src/server",
     "watch-stylus": "stylus --watch --out build/client/index.css src/client/stylus/index.styl"
@@ -17,34 +18,53 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "awesome-typescript-loader": "^3.0.3",
-    "body-parser": "^1.16.0",
-    "browser-sync": "^2.18.7",
-    "connect-modrewrite": "^0.9.0",
-    "express": "^4.14.1",
+    "@types/jest": "^20.0.2",
+    "@types/node": "^8.0.6",
+    "@types/react": "^15.0.33",
+    "@types/react-router-dom": "^4.0.5",
+    "awesome-typescript-loader": "^3.2.1",
+    "body-parser": "^1.17.2",
+    "browser-sync": "^2.18.12",
+    "connect-modrewrite": "^0.10.1",
+    "express": "^4.15.3",
+    "jest": "^20.0.4",
     "lodash.debounce": "^4.0.8",
     "nodemon": "^1.11.0",
     "proxy-middleware": "^0.15.0",
     "stylus": "^0.54.5",
-    "typescript": "2.1.5",
-    "webpack": "^2.2.1"
+    "ts-jest": "^20.0.6",
+    "typescript": "2.4.1",
+    "webpack": "^3.0.0"
   },
   "dependencies": {
-    "@types/react": "^15.0.6",
-    "@types/react-dom": "^0.14.22",
-    "@types/whatwg-fetch": "0.0.33",
     "classnames": "^2.2.5",
-    "hi-xml2html": "^1.0.0",
+    "hi-xml2html": "^2.0.2",
     "hire-faceted-search": "^7.0.1",
     "isomorphic-fetch": "^2.2.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-redux": "^5.0.2",
-    "react-router": "^3.0.2",
-    "react-router-redux": "^4.0.7",
-    "redux": "^3.6.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "^5.0.0-alpha.6",
+    "redux": "^3.7.1",
     "redux-thunk": "^2.2.0",
-    "sax": "^1.2.2",
-    "whatwg-fetch": "^2.0.2"
+    "sax": "^1.2.4",
+    "styled-components": "^2.1.0",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "globals": {
+      "__TS_CONFIG__": "src/client/tsconfig.json"
+    }
   }
 }

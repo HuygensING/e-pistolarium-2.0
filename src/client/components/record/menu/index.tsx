@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from './button';
-import history from '../../../routes/history';
+import history from '../../../store/history';
 
 export default ({
 	dates,

@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { routerMiddleware, routerReducer } from 'react-router-redux';
 import reducers from '../reducers';
 import thunkMiddleware from 'redux-thunk';
-
+import history from './history';
 const logger = (/* store */) => next => action => {
 	if (action.hasOwnProperty('type')) {
 		console.log('[REDUX]', action.type, action);
@@ -10,10 +10,27 @@ const logger = (/* store */) => next => action => {
 
 	return next(action);
 };
+//
+// const createStoreWithMiddleware = applyMiddleware(thunkMiddleware, logger)(createStore);
+//
+// const data = combineReducers({
+// 	...reducers,
+// 	routing: routerReducer,
+// });
+//
+// export default createStoreWithMiddleware(data, window['SERVER_STATE']);
 
-const createStoreWithMiddleware = applyMiddleware(thunkMiddleware, logger)(createStore);
 
-reducers['routing'] = routerReducer;
-const data = combineReducers(reducers);
+// Build the middleware for intercepting and dispatching navigation actions
+const middleware = routerMiddleware(history);
 
-export default createStoreWithMiddleware(data);
+// Add the reducer to your store on the `router` key
+// Also apply our middleware for navigating
+export default createStore(
+	combineReducers({
+		...reducers,
+		router: routerReducer
+	}),
+	applyMiddleware(middleware, thunkMiddleware, logger)
+);
+

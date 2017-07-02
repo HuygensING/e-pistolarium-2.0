@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import * as cx from 'classnames';
 import Meta from './meta';
 import NewAnnotation from './new-annotation';
@@ -6,6 +7,11 @@ import Annotation from './annotation';
 import Menu from './menu';
 import Article from './article';
 import {INewAnnotation, IAnnotation} from "../../reducers/annotation";
+import {
+	cancelAnnotation, createAnnotation, removeNewAnnotation,
+	saveNewAnnotation, setActiveAnnotation
+} from "../../actions/annotation/index";
+import {fetchLetter, goToLetter} from "../../actions/letter";
 
 interface IRecordProps {
 	annotation: IAnnotation;
@@ -19,7 +25,7 @@ interface IRecordProps {
 	removeNewAnnotation: () => void;
 	saveNewAnnotation: () => void;
 	setActiveAnnotation: (id: string) => void;
-	params: any;
+	match: any;
 	prevLetter: any;
 }
 
@@ -37,12 +43,12 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 	};
 
 	public componentDidMount() {
-		const { id, subId } = this.props.params;
+		const { id, subId } = this.props.match.params;
 		this.props.fetchLetter(id, subId);
 	}
 
 	public componentWillReceiveProps(nextProps) {
-		const {id, subId} = nextProps.params;
+		const {id, subId} = nextProps.match.params;
 		this.props.fetchLetter(id, subId);
 	}
 
@@ -100,4 +106,22 @@ class Record extends React.Component<IRecordProps, IRecordState> {
 	}
 }
 
-export default Record;
+export default connect(
+	state => ({
+		annotation: state.annotation.active,
+		letter: state.letter.current,
+		nextLetter: state.search.nextLetter,
+		newAnnotation: state.annotation.new,
+		prevLetter: state.search.prevLetter,
+	}),
+	{
+		cancelAnnotation,
+		createAnnotation,
+		fetchLetter,
+		goToLetter,
+		removeNewAnnotation,
+		saveNewAnnotation,
+		setActiveAnnotation,
+	}
+)(Record);
+
