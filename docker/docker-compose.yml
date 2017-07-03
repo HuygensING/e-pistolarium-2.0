@@ -1,0 +1,18 @@
+version: "3"
+services:
+  server:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-server
+    command: node index.js
+  client:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-dev-client
+    links:
+      - "server"
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - ../:/app

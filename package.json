@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "compose-dev": "docker-compose -f docker/docker-compose.yml",
+    "compose-prod": "npm run compose-dev -- -f docker/docker-compose-prod.yml",
     "build": "mkdir -p build/client && npm run build-css && npm run build-server && npm run build-client",
     "build-client": "webpack",
     "build-css": "stylus --out build/client/index.css src/client/stylus/index.styl",

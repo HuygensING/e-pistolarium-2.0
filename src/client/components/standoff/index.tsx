@@ -78,8 +78,8 @@ const Underline = styled(InlineDiv)`
 	text-decoration: underline;
 `;
 
-const Head = styled.h2`
-	margin-top: 2em;
+const Head2 = styled.h2`
+	margin: 2em 1em -0.5em 1em;
 `;
 
 const componentByTag = {
@@ -147,13 +147,13 @@ class Json2react extends React.Component<any, any> {
 	public render() {
 		return (
 			<div>
-				<Head>Text</Head>
+				<Head2>Text</Head2>
 				<CodeMirror
 					className="text"
 					value={this.state.text}
 					onChange={(text) => this.setState({text})}
 				/>
-				<Head>Annotations</Head>
+				<Head2>Annotations</Head2>
 				<CodeMirror
 					value={this.state.annotations}
 					onChange={(annotations) => this.setState({annotations})}
@@ -162,7 +162,7 @@ class Json2react extends React.Component<any, any> {
 				  	mode: 'javascript',
 				  }}
 				/>
-				<Head>Output</Head>
+				<Head2>Output</Head2>
 				{this.standoff2react()}
 			</div>
 		);

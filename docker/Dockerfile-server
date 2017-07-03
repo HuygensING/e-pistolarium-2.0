@@ -1,0 +1,8 @@
+FROM node:7.8-alpine
+
+COPY build/server /webapp
+COPY node_modules /webapp/node_modules
+
+EXPOSE 3999
+
+WORKDIR /webapp
