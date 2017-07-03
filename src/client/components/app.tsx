@@ -7,7 +7,7 @@ import Login from './login';
 import Messages from './messages';
 import Home from './home';
 import Record from './record';
-import Json2react from './json2react';
+import Standoff from './standoff';
 
 import store from '../store';
 import history from '../store/history';
@@ -38,8 +38,8 @@ export default () => (
 					path="/login"
 				/>
 				<Route
-					component={Json2react}
-					path="/json2react"
+					component={Standoff}
+					path="/standoff"
 				/>
 				<Messages />
 			</App>
